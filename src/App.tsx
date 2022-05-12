@@ -15,6 +15,7 @@ import Logo from '../assets/logo.png'
 import pkg from '../package.json'
 import toIco from 'to-ico'
 import { nanoid } from 'nanoid'
+import Jimp from 'jimp'
 
 interface SimplifiedDrive {
   letter: string
@@ -82,13 +83,21 @@ const uploadImage = (drive: SimplifiedDrive) => {
       }
 
       if (path.endsWith('.ico')) write(image)
-      else
-        toIco(image)
-          .then(write)
-          .catch((e) => {
-            console.error(e)
-            alert('Unsupported image. Must be a .png that is 256x256')
+      else {
+        const img = await Jimp.read(image)
+
+        img
+          .resize(256, 256)
+          .getBufferAsync(Jimp.MIME_PNG)
+          .then((buffer) => {
+            toIco(buffer)
+              .then(write)
+              .catch((e) => {
+                console.error(e)
+                alert('Unsupported image. Must be a .png that is 256x256')
+              })
           })
+      }
     })
 
     input.click()
