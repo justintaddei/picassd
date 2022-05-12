@@ -57,7 +57,7 @@ const uploadImage = (drive: SimplifiedDrive) => {
   return new Promise<string>((resolve) => {
     const input = document.createElement('input')
     input.type = 'file'
-    input.accept = 'image/png,.ico'
+    input.accept = 'image/*,.ico'
 
     input.addEventListener('change', async (e) => {
       e.preventDefault()
