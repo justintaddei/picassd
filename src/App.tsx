@@ -172,14 +172,9 @@ const App = () => {
             </a>
           </li>
           <li>
-            <a target="_blank" href="https://justintaddei.github.io/picassd">
-              Website
-            </a>
-          </li>
-          <li>
             <a
               target="_blank"
-              href="https://github.com/justintaddei/picassd/LICENSE.md"
+              href="https://raw.githubusercontent.com/justintaddei/picassd/master/LICENSE.md"
             >
               License
             </a>
